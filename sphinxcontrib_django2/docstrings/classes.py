@@ -49,6 +49,10 @@ def improve_model_docstring(app, model, lines):
         for line in lines
         if line.startswith(":param ") and ":" in line[param_offset:]
     ]
+    
+    # Add Database Table Name
+    lines.append("**Database Table:** " + model._meta.db_table)
+    lines.append("")
 
     # Get all fields of this model which are not already explicitly included in the docstring
     all_fields = [
